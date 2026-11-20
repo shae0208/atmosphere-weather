@@ -599,6 +599,36 @@
   color: var(--accent);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .current-weather,
 .sun-card,
 .detail-card,
@@ -1016,7 +1046,257 @@ footer svg {
   font-weight: 400;
 }
 
+/*=====================================
+  Dark Mode
+  ===================================== */
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] body {
+  background-color: #101722;
+  background-image:
+    linear-gradient(
+      115deg,
+      rgba(8, 16, 27, 0.86),
+    ),
+    url('/weather-editorial-bg.png');
+}
+
+.theme-dark {
+  color: #f1eee8;
+}
+
+.theme-dark .topbar {
+  background: rgba(25, 37, 52, 0.94);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.theme-dark .brand {
+  color: #f1eee8;
+}
+
+.theme-dark .search-box {
+  background: rgba(15, 25, 39, 0.9);
+  border-color: var(--line);
+  color: var(--muted-ink);
+}
+
+.theme-dark .search-box input {
+  color: var(--ink);
+}
+
+.theme-dark .search-box input::placeholder {
+  color: #9ba8b8;
+}
+
+.theme-dark .search-results {
+  background: #192536;
+  border-color: var(--line);
+}
+
+.theme-dark .search-results button {
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+
+.theme-dark .search-results button:hover {
+  background: #29394d;
+}
+
+.theme-dark .search-results small {
+  color: var(--muted-ink);
+}
+
+.theme-dark .location-button {
+  background: #d7a85f;
+  color: #172237;
+}
+
+.theme-dark .location-button:hover {
+  background: #e7bc79;
+}
+
+.theme-dark .current-weather,
+.theme-dark .sun-card,
+.theme-dark .detail-card,
+.theme-dark .hour-card,
+.theme-dark .weekly-card {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--line);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.25);
+}
+
+.theme-dark .location,
+.theme-dark .temperature-area h1,
+.theme-dark .condition {
+  color: var(--ink);
+}
+
+.theme-dark .date,
+.theme-dark .feels-like,
+.theme-dark .high-low {
+  color: var(--muted-ink);
+}
+
+.theme-dark .sun-card-heading h2,
+.theme-dark .sun-card .sun-item,
+.theme-dark .sun-card .sun-item strong,
+.theme-dark .daylight-note strong {
+  color: var(--ink);
+}
+
+.theme-dark .sun-card-heading p,
+.theme-dark .sun-card .sun-item span {
+  color: var(--muted-ink);
+}
+
+.theme-dark .sun-card .sun-divider {
+  background: var(--line);
+}
+
+.theme-dark .daylight-note {
+  border-color: var(--line);
+}
+
+.theme-dark .section-heading {
+  color: #f1eee8;
+}
+
+.theme-dark .detail-heading,
+.theme-dark .detail-card p {
+  color: var(--muted-ink);
+}
+
+.theme-dark .detail-card h3 {
+  color: var(--ink);
+}
+
+.theme-dark .hour-card strong {
+  color: var(--ink);
+}
+
+.theme-dark .hour-card.active {
+  background: #30475e;
+  border-color: var(--accent);
+  color: #fffaf2;
+}
+
+.theme-dark .hour-card.active strong,
+.theme-dark .hour-card.active svg {
+  color: #f2c27e;
+}
+
+.theme-dark .forecast-day {
+  color: var(--ink);
+}
+
+.theme-dark .forecast-condition {
+  color: var(--muted-ink);
+}
+
+.theme-dark .forecast-temperatures strong {
+  color: var(--ink);
+}
+
+.theme-dark .forecast-temperatures span {
+  color: var(--muted-ink);
+}
+
+.theme-dark .forecast-row {
+  border-bottom-color: var(--line);
+}
+
+.theme-dark .forecast-day-group + .forecast-day-group {
+  border-top-color: var(--line);
+}
+
+.theme-dark .forecast-row-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.theme-dark .forecast-chevron {
+  color: var(--muted-ink);
+}
+
+.theme-dark .day-hourly-heading,
+.theme-dark .day-hour-time,
+.theme-dark .day-hour-rain,
+.theme-dark .day-hour-humidity,
+.theme-dark .day-hourly-empty {
+  color: var(--muted-ink);
+}
+
+.theme-dark .day-hour-card {
+  background: rgba(12, 23, 37, 0.72);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.theme-dark .day-hour-temp {
+  color: var(--ink);
+}
+
+.theme-dark .loading-screen,
+.theme-dark .loading-screen p,
+.theme-dark .footer,
+.theme-dark footer {
+  color: var(--ink);
+}
+
+.theme-dark .error-message {
+  background: rgba(85, 39, 47, 0.95);
+  border-color: rgba(255, 150, 150, 0.25);
+  color: #ffe0e0;
+}
+
+.theme-dark .error-message button {
+  color: #ffe0e0;
+}
+
+.theme-dark .theme-toggle {
+  background: rgba(15, 25, 39, 0.9);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.theme-dark .theme-toggle:hover {
+  background: #29394d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle {
+    transition: none;
+  }
+
+  .theme-toggle:hover {
+    transform: none;
+  }
+}
+
 @media (max-width: 750px) {
+  .search-box {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+  }
+
+  .theme-toggle {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-toggle span {
+    display: none;
+  }
+
   .sun-card {
     min-height: 0;
     padding: 25px;
@@ -1046,6 +1326,11 @@ footer svg {
 }
 
 @media (max-width: 420px) {
+  .search-box {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  
   .sun-times {
     flex-direction: column;
     align-items: stretch;

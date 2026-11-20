@@ -210,10 +210,18 @@ function App() {
   const [searching, setSearching] = useState(false);
   const [error, setError] = useState("");
   const [expandedDay, setExpandedDay] = useState(null);
+  
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("atmosphere-theme") || "light");
 
   useEffect(() => {
     loadWeather(DEFAULT_LOCATION);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("atmosphere-theme", theme);
+  }, [theme]);
 
   async function loadWeather(place) {
     setLoading(true);
@@ -382,7 +390,7 @@ function App() {
 
   if (loading && !weather) {
     return (
-      <main className="app">
+      <main className={`app theme-${theme}`}>
         <div className="loading-screen">
           <LoaderCircle className="loading-icon" size={38} />
           <h2>Loading Atmosphere...</h2>
@@ -393,7 +401,7 @@ function App() {
   }
 
   return (
-    <main className="app">
+    <main className={`app theme-${theme}`}>
       <header className="topbar">
         <div className="brand">
           <Sun size={27} />
@@ -417,6 +425,23 @@ function App() {
             )}
           </button>
         </form>
+
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={() =>
+            setTheme((current) =>
+              current === "light" ? "dark" : "light"
+            )
+          }
+          aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+        >
+          {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+
+          <span>
+            {theme === "light" ? "Dark Mode" : "Light Mode"}
+          </span>
+        </button>
 
         <button
           className="location-button"

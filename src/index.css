@@ -19,7 +19,18 @@
   --accent-soft: #ead8bd;
 }
 
-/* Consistent sizing and spacing */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  
+  --ink: #f1eee8;
+  --muted-ink: #aeb9c7;
+  --paper: rgba(25, 37, 52, 0.94);
+  --paper-soft: rgba(25, 37, 52, 0.86);
+  --line: rgba(255, 255, 255, 0.13);
+  --accent: #e5b66e;
+  --accent-soft: #5c4933;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
