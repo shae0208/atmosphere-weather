@@ -35,6 +35,28 @@ const DEFAULT_LOCATION = {
   longitude: -76.8867
 };
 
+function getSavedLocation() {
+  try {
+    const savedLocation = localStorage.getItem("atmosphere-location");
+
+    if (savedLocation) {
+      const parsedLocation = JSON.parse(savedLocation);
+
+      if (
+        parsedLocation.name &&
+        Number.isFinite(parsedLocation.latitude) &&
+        Number.isFinite(parsedLocation.longitude)
+      ) {
+        return parsedLocation;
+      }
+    }
+  } catch (error) {
+    console.error("Unable to restore saved location:", error);
+  }
+
+  return DEFAULT_LOCATION;
+}
+
 function getWeatherDescription(code) {
   if (code === 0) return "Clear Sky";
   if (code === 1) return "Mainly Clear";
@@ -201,7 +223,7 @@ function WeatherDetail({ icon: Icon, label, value, description }) {
 
 function App() {
   const [weather, setWeather] = useState(null);
-  const [location, setLocation] = useState(DEFAULT_LOCATION);
+  const [location, setLocation] = useState(getSavedLocation);
 
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -215,7 +237,7 @@ function App() {
     () => localStorage.getItem("atmosphere-theme") || "light");
 
   useEffect(() => {
-    loadWeather(DEFAULT_LOCATION);
+    loadWeather(location);
   }, []);
 
   useEffect(() => {
@@ -235,6 +257,10 @@ function App() {
 
       setWeather(data);
       setLocation(place);
+      localStorage.setItem(
+        "atmosphere-location",
+        JSON.stringify(place)
+      );
       setSearchResults([]);
       setSearchText("");
     } catch (err) {
